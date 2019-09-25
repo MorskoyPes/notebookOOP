@@ -1,20 +1,20 @@
 <?php
 
-class Model
+class Model_Add extends Model
 {
 	// todo: передать массив ПОСТ в аргумнгтах метода
-	public function addNote(...)
+	public function addNote()
   {
 		if ($comment = R::dispense('comment')) {
 
 			$arr_table = ['name', 'message'];
 
-
-		// $comment->name = $_POST['name'];
-		// $comment->message = $_POST['message'];
-		// $comment->date = date("l d F Y");
+		$comment->name = $_POST['name'];
+		$comment->message = $_POST['message'];
+		$time = time();
+		$comment->date = date("l d m Y", $time); // дата с числом стоит только над всеми записями
 		// $comment->date_calendar = date("m/d/y");
-		// $comment->time = date("h:i:s");
+		$comment->time = date("h:i"); // дата с часами стоит около каждой записи
 
  		R::store($comment);
   }
@@ -77,7 +77,20 @@ class Model
 		}
 	}
 
+public function get_data()
+	{
+		return array(
+
+			array(),
+			array(),
+		);
+	}
+
+
+
 }
+
+
 
 
 
